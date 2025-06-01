@@ -92,7 +92,9 @@
       "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExczRtM21jczdibWp1empyNnE3eXhxbzh1eTk3NG5pdW5qY2F6YnpiMCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/3ohA2ZD9EkeK2AyfdK/giphy.gif",
       "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExeG5lc3hnZ2s3N2I3anVubGUweWlxaWN1ZnFqcGdyNDFxNGtrZmtoOSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/OKvgO8uBDWi3Uu6ht3/giphy.gif",
       "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExeG5lc3hnZ2s3N2I3anVubGUweWlxaWN1ZnFqcGdyNDFxNGtrZmtoOSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/fxU6WfJ8eembhmZBC6/giphy.gif",
-      "https://media.giphy.com/media/U4XgBzTDljeCemTIiU/giphy.gif?cid=ecf05e47uchol0iolkxbale34t3qpx26yrrsuhj431jgthrc&ep=v1_gifs_search&rid=giphy.gif&ct=g",
+      "https://media.giphy.com/media/U4XgBzTDljeCemTIiU/giphy.gif?cid=ecf05e47uchol0iolkxbale34t3qpx26yrrsuhj431jgthrc&ep=v1_gifs_search&rid=giphy.gif",
+      "https://media.giphy.com/media/wOevyjGo8ingGZk5Aq/giphy.gif?cid=ecf05e47uchol0iolkxbale34t3qpx26yrrsuhj431jgthrc&ep=v1_gifs_search&rid=giphy.gif"
+      "https://media.giphy.com/media/h4FgxDmLZxBTO/giphy.gif?cid=ecf05e4762s31kv7bsd3jmjwtwsslkwa4bd1bfstg2b1wr91&ep=v1_gifs_search&rid=giphy.gif"
     ];
 
     const yesBtn = document.querySelector("#yesBtn");
@@ -118,9 +120,9 @@
       noBtn.style.padding = `${Math.max(0.3, noPadding)}rem 1rem`;
       yesBtn.style.padding = `${Math.min(2, yesPadding)}rem 2rem`;
 
-      // Move No button randomly within visible window bounds
-      const maxX = window.innerWidth - noBtn.offsetWidth;
-      const maxY = window.innerHeight - noBtn.offsetHeight;
+      // Constrain No button to viewport
+      const maxX = Math.max(0, window.innerWidth - noBtn.offsetWidth);
+      const maxY = Math.max(0, window.innerHeight - noBtn.offsetHeight);
       const randomX = Math.random() * maxX;
       const randomY = Math.random() * maxY;
 
