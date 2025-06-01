@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>I'm sorry 💔</title>
+  <style>
+    :root {
+      font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: #f8fafc;
+    }
+
+    h1 {
+      font-size: 2.25rem;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    button {
+      padding: 0.75rem 1.75rem;
+      font-size: 1.125rem;
+      border: none;
+      border-radius: 0.75rem;
+      cursor: pointer;
+      transition: transform 0.12s ease, font-size 0.3s ease, padding 0.3s ease;
+    }
+
+    #yesBtn {
+      background: #2563eb;
+      color: #fff;
+    }
+
+    #noBtn {
+      background: #e11d48;
+      color: #fff;
+    }
+
+    button:active {
+      transform: scale(0.95);
+    }
+
+    #gifContainer {
+      max-width: 80vw;
+      max-height: 60vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #gifContainer img {
+      width: 100%;
+      height: auto;
+      border-radius: 1rem;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+    }
+  </style>
+</head>
+<body>
+  <h1>Will you forgive me?</h1>
+  <div class="buttons">
+    <button id="yesBtn">Yes</button>
+    <button id="noBtn">No</button>
+  </div>
+  <div id="gifContainer"></div>
+
+  <script>
+    const gifs = [
+      "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExczRtM21jczdibWp1empyNnE3eXhxbzh1eTk3NG5pdW5qY2F6YnpiMCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/3ohA2ZD9EkeK2AyfdK/giphy.gif",
+      "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExeG5lc3hnZ2s3N2I3anVubGUweWlxaWN1ZnFqcGdyNDFxNGtrZmtoOSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/OKvgO8uBDWi3Uu6ht3/giphy.gif",
+      "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExeG5lc3hnZ2s3N2I3anVubGUweWlxaWN1ZnFqcGdyNDFxNGtrZmtoOSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/fxU6WfJ8eembhmZBC6/giphy.gif",
+      "https://media.giphy.com/media/U4XgBzTDljeCemTIiU/giphy.gif?cid=ecf05e47uchol0iolkxbale34t3qpx26yrrsuhj431jgthrc&ep=v1_gifs_search&rid=giphy.gif&ct=g",
+    ];
+
+    const yesBtn = document.querySelector("#yesBtn");
+    const noBtn = document.querySelector("#noBtn");
+    const gifContainer = document.querySelector("#gifContainer");
+
+    noBtn.addEventListener("click", () => {
+      const randomGif = gifs[Math.floor(Math.random() * gifs.length)];
+      gifContainer.innerHTML = `<img src="${randomGif}" alt="Please forgive me gif" />`;
+
+      // Make No button smaller and Yes button bigger
+      noBtn.style.fontSize = '0.9rem';
+      noBtn.style.padding = '0.5rem 1.2rem';
+      yesBtn.style.fontSize = '1.4rem';
+      yesBtn.style.padding = '1rem 2rem';
+    });
+
+    yesBtn.addEventListener("click", () => {
+      // Redirect to apology letter
+      window.location.href = "apology.html";
+    });
+  </script>
+</body>
+</html>
