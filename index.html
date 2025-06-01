@@ -89,15 +89,25 @@
     const noBtn = document.querySelector("#noBtn");
     const gifContainer = document.querySelector("#gifContainer");
 
+    let noClickCount = 0;
+
     noBtn.addEventListener("click", () => {
       const randomGif = gifs[Math.floor(Math.random() * gifs.length)];
       gifContainer.innerHTML = `<img src="${randomGif}" alt="Please forgive me gif" />`;
 
-      // Make No button smaller and Yes button bigger
-      noBtn.style.fontSize = '0.9rem';
-      noBtn.style.padding = '0.5rem 1.2rem';
-      yesBtn.style.fontSize = '1.4rem';
-      yesBtn.style.padding = '1rem 2rem';
+      noClickCount++;
+
+      // Calculate sizes
+      const noFontSize = 1.125 - 0.1 * noClickCount;
+      const yesFontSize = 1.125 + 0.2 * noClickCount;
+      const noPadding = 0.75 - 0.05 * noClickCount;
+      const yesPadding = 0.75 + 0.1 * noClickCount;
+
+      // Set minimum and maximum constraints
+      noBtn.style.fontSize = `${Math.max(0.5, noFontSize)}rem`;
+      yesBtn.style.fontSize = `${Math.min(3, yesFontSize)}rem`;
+      noBtn.style.padding = `${Math.max(0.3, noPadding)}rem 1.2rem`;
+      yesBtn.style.padding = `${Math.min(2, yesPadding)}rem 2rem`;
     });
 
     yesBtn.addEventListener("click", () => {
