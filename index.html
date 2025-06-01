@@ -28,9 +28,12 @@
 
     .buttons {
       display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
       gap: 1.5rem;
       margin-bottom: 2rem;
       position: relative;
+      max-width: 90vw;
     }
 
     button {
@@ -39,8 +42,9 @@
       border: none;
       border-radius: 0.75rem;
       cursor: pointer;
-      transition: transform 0.12s ease, font-size 0.3s ease, padding 0.3s ease, left 0.3s ease, top 0.3s ease;
+      transition: all 0.3s ease;
       position: relative;
+      max-width: 90vw;
     }
 
     #yesBtn {
@@ -60,7 +64,7 @@
     }
 
     #gifContainer {
-      max-width: 80vw;
+      max-width: 90vw;
       max-height: 60vh;
       display: flex;
       justify-content: center;
@@ -104,25 +108,31 @@
       noClickCount++;
 
       // Update sizes
-      const noFontSize = 1.125 - 0.1 * noClickCount;
+      const noFontSize = 1.125 - 0.08 * noClickCount;
       const yesFontSize = 1.125 + 0.2 * noClickCount;
-      const noPadding = 0.75 - 0.05 * noClickCount;
+      const noPadding = 0.75 - 0.04 * noClickCount;
       const yesPadding = 0.75 + 0.1 * noClickCount;
 
       noBtn.style.fontSize = `${Math.max(0.5, noFontSize)}rem`;
       yesBtn.style.fontSize = `${Math.min(3, yesFontSize)}rem`;
-      noBtn.style.padding = `${Math.max(0.3, noPadding)}rem 1.2rem`;
+      noBtn.style.padding = `${Math.max(0.3, noPadding)}rem 1rem`;
       yesBtn.style.padding = `${Math.min(2, yesPadding)}rem 2rem`;
 
-      // Move No button to a random position within viewport
+      // Move No button randomly within visible window bounds
       const maxX = window.innerWidth - noBtn.offsetWidth;
       const maxY = window.innerHeight - noBtn.offsetHeight;
-      const randomX = Math.floor(Math.random() * maxX);
-      const randomY = Math.floor(Math.random() * maxY);
+      const randomX = Math.random() * maxX;
+      const randomY = Math.random() * maxY;
 
       noBtn.style.position = 'absolute';
       noBtn.style.left = `${randomX}px`;
       noBtn.style.top = `${randomY}px`;
+
+      // Fade out only if it's extremely small (more than 10 clicks)
+      if (noClickCount > 10) {
+        noBtn.style.opacity = '0';
+        noBtn.style.pointerEvents = 'none';
+      }
     });
 
     yesBtn.addEventListener("click", () => {
