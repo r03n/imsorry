@@ -16,6 +16,8 @@
       justify-content: center;
       align-items: center;
       background: #f8fafc;
+      position: relative;
+      overflow: hidden;
     }
 
     h1 {
@@ -28,6 +30,7 @@
       display: flex;
       gap: 1.5rem;
       margin-bottom: 2rem;
+      position: relative;
     }
 
     button {
@@ -36,17 +39,20 @@
       border: none;
       border-radius: 0.75rem;
       cursor: pointer;
-      transition: transform 0.12s ease, font-size 0.3s ease, padding 0.3s ease;
+      transition: transform 0.12s ease, font-size 0.3s ease, padding 0.3s ease, left 0.3s ease, top 0.3s ease;
+      position: relative;
     }
 
     #yesBtn {
       background: #2563eb;
       color: #fff;
+      z-index: 1;
     }
 
     #noBtn {
       background: #e11d48;
       color: #fff;
+      z-index: 2;
     }
 
     button:active {
@@ -97,17 +103,26 @@
 
       noClickCount++;
 
-      // Calculate sizes
+      // Update sizes
       const noFontSize = 1.125 - 0.1 * noClickCount;
       const yesFontSize = 1.125 + 0.2 * noClickCount;
       const noPadding = 0.75 - 0.05 * noClickCount;
       const yesPadding = 0.75 + 0.1 * noClickCount;
 
-      // Set minimum and maximum constraints
       noBtn.style.fontSize = `${Math.max(0.5, noFontSize)}rem`;
       yesBtn.style.fontSize = `${Math.min(3, yesFontSize)}rem`;
       noBtn.style.padding = `${Math.max(0.3, noPadding)}rem 1.2rem`;
       yesBtn.style.padding = `${Math.min(2, yesPadding)}rem 2rem`;
+
+      // Move No button to a random position within viewport
+      const maxX = window.innerWidth - noBtn.offsetWidth;
+      const maxY = window.innerHeight - noBtn.offsetHeight;
+      const randomX = Math.floor(Math.random() * maxX);
+      const randomY = Math.floor(Math.random() * maxY);
+
+      noBtn.style.position = 'absolute';
+      noBtn.style.left = `${randomX}px`;
+      noBtn.style.top = `${randomY}px`;
     });
 
     yesBtn.addEventListener("click", () => {
